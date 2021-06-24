@@ -1,0 +1,68 @@
+{
+    "input": {
+        "summary": {
+            "read_file": true,
+            "file_path": "../../data/raw_data/itb_crash_summary.csv.gz",
+            "header": "None",
+            "delimiter": "|",
+            "column_types": ["claim_flag", "timestamp_summary", "category"],
+            "column_name": {
+                "id": 0,
+                "claim_flag": 17,
+                "timestamp_summary": 5,
+                "category": 7
+            }
+        },
+        "time_series": {
+            "folder_path": "../../data/raw_data",
+            "file_names": ["itb_rm_adj_2019_3_final_freq_crash_point.csv_000.gz",
+                "itb_rm_adj_2019_3_final_freq_crash_point.csv_001.gz",
+                "itb_rm_adj_2019_3_final_freq_crash_point.csv_002.gz",
+                "itb_rm_adj_2019_3_final_freq_crash_point.csv_003.gz",
+                "itb_rm_adj_2019_3_final_freq_crash_point.csv_004.gz",
+                "itb_rm_adj_2019_3_final_freq_crash_point.csv_005.gz",
+                "itb_rm_adj_2019_3_final_freq_crash_point.csv_006.gz"],
+            "header": "None",
+            "delimiter": "|",
+            "column_types": ["acceleration_x", "acceleration_y", "acceleration_z"],
+            "column_name": {
+                "id": 0,
+                "timestamp": 2,
+                "acceleration_x": 5,
+                "acceleration_y": 6,
+                "acceleration_z": 7
+            }   
+        }
+    },
+    "data_condition": {
+        "n_data_each_crash": 15,
+        "interval_sec": 0.5,
+        "lim_dx_90_10": 12.0,
+        "lim_dy_90_10": 7.0,
+        "lim_dz_90_10": 8.0
+    },
+    "sampling": {
+        "type" : "down",
+        "reference_time" : "timestamp_summary"
+    },
+    "data_split": {
+        "test_size": 0.2,
+        "random_state": 123
+    },
+    "regularization": {
+        "type" : "mshift_to_rscaler"
+    },
+    "output": {
+        "folder_path": {
+            "train_data": "../../data/train_data/itb2Hz_all",
+            "test_data": "../../data/test_data/itb2Hz_all"
+        },
+        "other_infos": {
+            "file_type": "csv",
+            "csv_max_lines": 10000
+        }
+    },
+    "logger": {
+        "folder_path" : "../../data/train_data/itb2Hz_all"
+    }
+}
